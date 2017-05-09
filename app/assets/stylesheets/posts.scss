@@ -1,0 +1,62 @@
+body{
+    text-align: center;
+    background-image: url(who.png);
+    background-repeat: no-repeat;
+}
+
+h1{
+    margin-bottom: 250px;
+    font-size: 50px;
+    color: white;
+}
+
+strong{
+    color: white;
+}
+
+.one:hover{
+    border-radius: 30px;
+    padding: 15px;
+    border: solid 1px white;
+    background-color: white;
+    opacity: 0.8;
+}
+
+.title{
+    border-radius: 10px;
+    width: 600px;
+    height: 20px;    
+    margin: 8px;
+}
+
+.content{
+    border-radius: 10px;
+    width: 600px;
+    height: 80px;
+}
+
+.submit{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+h2, .tit, .con{
+    color: white;
+}
+
+h2{
+    padding-top: 30px;
+    padding-bottom: 200px;
+}
+
+.comment{
+    border-radius: 10px;
+    width: 600px; 
+    height: 30px;
+}
+
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/

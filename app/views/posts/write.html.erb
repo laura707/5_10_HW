@@ -6,7 +6,7 @@
     <br>
     <input class="content" type="text" name="post_content" placeholder="내용도 입력해주세요 :)">
     <br>
-    <input class="submit" type="submit" value="글 올리기">
+   <button type="submit" class="submit" value="확인">확인</button>
 </form>
 
 <hr>
@@ -21,7 +21,8 @@
 
     <form action="/posts/destroy/<%= p.id %>" method="POST">
     <!--id는 기본적으로 레일즈가 갖고 있는, 배열방번호 같은-->
-        <input  class="submit" type="submit" value="삭제">
+    <button class="submit" type="submit" value="글 올리기" formaction="/posts/edit/<%=p.id%>" formmethod="POST">수정</button>
+    <button type="submit" class="submit" value="삭제">삭제</button>
     </form>
     
     <br>

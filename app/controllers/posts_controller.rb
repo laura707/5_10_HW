@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     def index
-       
+        
     end
     
     def show
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
     
     def write
-         @posts=Post.all
+         @posts=Post.all.order("id desc")#new 코드! 순차적으로 글 쓴 것들이 쌓이는 형식#@posts=Post.all
     end
     #작성 위해 폼 제공
     def create
@@ -32,5 +32,18 @@ class PostsController < ApplicationController
         post.destroy!#찾았으면 걔 지워
         
         redirect_to :back#얘도 프로세스 기능이므로 루트 디렉토리로 넘겨줌
+    end
+    
+    def edit#게시글 수정
+        @post=Post.find(params[:post_id])
+    end
+    
+    def update#그리고 이를 실제로 수행하는 프로세스
+        post=Post.find(params[:post_id])
+        post.title=params[:post_title]
+        post.content=params[:post_content]
+        post.save
+        
+        redirect_to '/'
     end
 end

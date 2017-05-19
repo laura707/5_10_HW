@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   
   post 'comments/create'
   
+  post 'comments/destroy/:id' => 'comments#destroy' #NEW
+  
   post 'posts/edit/:post_id' => 'posts#edit'
   post 'posts/update/:post_id' => 'posts#update'
   # The priority is based upon order of creation: first created -> highest priority.

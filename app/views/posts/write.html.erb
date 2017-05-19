@@ -1,5 +1,5 @@
 <h2>#새로운_글_작성</h2>
-<form action="/posts/create" method="POST"><!--url에 숨겨서 보이도록-->
+<form action="/posts/create" method="POST" enctype="multipart/form-data"><!--url에 숨겨서 보이도록--><!--NEW-->
     <!--이 곳에서 입력한 내용을 posts-create파일로 넘어감-->
     <!--제목, 내용, 버튼 만들기-->
     <input class="title" type="text" name="post_title" placeholder="제목을 써주세요 :)">
@@ -7,6 +7,7 @@
     <input class="content" type="text" name="post_content" placeholder="내용도 입력해주세요 :)">
     <br>
    <button type="submit" class="submit" value="확인">확인</button>
+   <input type="file" class="submit" name="pic"></input><!--NEW-->
 </form>
 
 <hr>
@@ -18,7 +19,8 @@
     <!--p에는 각각의 행이 담겨있다-->
    
     <br>
-
+    <img src="<%=p.image.url%>"/>
+    
     <form action="/posts/destroy/<%= p.id %>" method="POST">
     <!--id는 기본적으로 레일즈가 갖고 있는, 배열방번호 같은-->
     <button class="submit" type="submit" value="글 올리기" formaction="/posts/edit/<%=p.id%>" formmethod="POST">수정</button>

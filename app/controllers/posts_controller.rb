@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     
     def write
          @posts=Post.all.order("id desc")#new 코드! 순차적으로 글 쓴 것들이 쌓이는 형식#@posts=Post.all
+         #post.image=params[:id]#post.image=params[:ImageUploader]#NEW
     end
     #작성 위해 폼 제공
     def create
@@ -19,7 +20,8 @@ class PostsController < ApplicationController
     #params에 해당하는 부분들이 각 변수들에게 저장된다.
         post=Post.new
         post.title=params[:post_title]
-        post.content=params[:post_content]
+        post.image=params[:file]#NEW
+        post.content=params[:post_content]#NEW
         post.save #윗 내용 저장
         redirect_to :back
     #게시글 하나 만들겠음

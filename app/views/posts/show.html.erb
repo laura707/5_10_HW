@@ -1,8 +1,13 @@
 <h2>#게시글_상세보기</h2>
+<h3>이미지</h3>
+<image src="post.image" />
+
 <h3 class="tit">제목: <%= @post.title %></h3>
 <hr>
 <h3 class="con">내용: <%= @post.content %></h3>
 
+
+<!--NEW-->
 <form action="/comments/create" method="POST"><!--url에 숨겨서 보이도록-->
     <!--이 곳에서 입력한 내용을 posts-create파일로 넘어감-->
     <!--제목, 내용, 버튼 만들기-->
@@ -13,7 +18,13 @@
     <button class="submit" type="submit" value="작성하기">작성하기</button>
 </form>
 
+
 <h4>댓글목록</h4>
 <% @comments.each do |c| %>
-  <p class="list"><%=c.content%></p>
+  <p class="list"><%=c.content%>
+  <!--NEW-->
+   <form action="/comments/destroy/<%= c.id %>" method="POST">
+    <button type="submit" value="삭제">삭제</button>
+   </form>
+  </p>
 <%end%>

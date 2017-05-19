@@ -5,6 +5,8 @@ class CreatePosts < ActiveRecord::Migration
       #string type
       t.text :content
       #text type
+      t.string :image
+      #NEW
       
       t.timestamps null: false
     end

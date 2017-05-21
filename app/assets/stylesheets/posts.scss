@@ -1,20 +1,19 @@
-body{
+body {
     text-align: center;
     background-image: url(who.png);
-    background-repeat: no-repeat;
 }
 
-h1{
+h1 {
     margin-bottom: 250px;
     font-size: 50px;
     color: white;
 }
 
-strong{
+strong {
     color: white;
 }
 
-.one:hover{
+.one:hover { 
     border-radius: 30px;
     padding: 15px;
     border: solid 1px white;
@@ -22,41 +21,92 @@ strong{
     opacity: 0.8;
 }
 
-.title{
+.title {
     border-radius: 10px;
     width: 600px;
     height: 20px;    
     margin: 8px;
 }
 
-.content{
+.content {
     border-radius: 10px;
     width: 600px;
     height: 80px;
 }
 
-.submit{
+.submit {
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
     font-weight: bold;
 }
 
-h2, .tit, .con{
+h2, .tit, .con, h4, h3 {
     color: white;
 }
 
-h2{
+h2 {
     padding-top: 30px;
-    padding-bottom: 200px;
+    padding-bottom: 190px;
 }
 
-.comment{
+.comment {
     border-radius: 10px;
     width: 600px; 
     height: 30px;
 }
 
+img {
+    width: 270px;
+    height: 270px;
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+.lists {
+    margin: 10px 5px;
+    float: left;
+}
+
+.margin {
+    margin-top: 350px;
+}
+
+nav {
+    width: 100%;
+    height: 30px;
+}
+
+.nav { 
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    float: left;
+}
+
+ul {
+   list-style-type: none;
+}
+
+li {
+    float: left;
+    margin: 0 10px;
+    font-size: 15px;
+}
+
+.log {
+    float: right;
+}
+
+.li:hover {
+    border-radius: 13px;
+    padding: 7px;
+    border: solid 1px white;
+}
+
+.welcome {
+    color: black;
+}
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/

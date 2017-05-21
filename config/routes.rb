@@ -9,10 +9,18 @@ Rails.application.routes.draw do
   
   post 'comments/create'
   
-  post 'comments/destroy/:id' => 'comments#destroy' #NEW
+  post 'comments/destroy/:id' => 'comments#destroy'
   
   post 'posts/edit/:post_id' => 'posts#edit'
   post 'posts/update/:post_id' => 'posts#update'
+  
+  get 'users/member_registration'
+  post 'users/create' #로그인 정보에 대해서는 숨기겠다
+  
+  post 'sessions/create' #회원가입 정보 또한 숨기겠다
+  get 'sessions/destroy' #post방식 추천!
+  get 'sessions/login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

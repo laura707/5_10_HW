@@ -1,33 +1,58 @@
-<h2>#새로운_글_작성</h2>
-<form action="/posts/create" method="POST" enctype="multipart/form-data"><!--url에 숨겨서 보이도록--><!--NEW-->
-    <!--이 곳에서 입력한 내용을 posts-create파일로 넘어감-->
-    <!--제목, 내용, 버튼 만들기-->
-    <input class="title" type="text" name="post_title" placeholder="제목을 써주세요 :)">
-    <br>
-    <input class="content" type="text" name="post_content" placeholder="내용도 입력해주세요 :)">
-    <br>
-   <button type="submit" class="submit" value="확인">확인</button>
-   <input type="file" class="submit" name="pic"></input><!--NEW-->
-</form>
+<!--게시판 페이지(글 작성, 게시판 목록, 로그인, 로그아웃, 회원가입, 이미지 올리기, 게시판 삭제)-->
 
-<hr>
+<!--메뉴바-->
+    <% unless session[:user_id].nil? %><!--if(session[:user_id]!=NULL)-->
+        <head>
+            <nav class="nav">
+                <ul>
+                    <li><a class="li" href="/">너나들이</a></li>
+                    <li><a class="li" href="/posts/write">글작성</a></li>
+                    <li class="log li"><a href="/users/member_registration">회원가입</a></li>
+                    <li class="log li"><a href="/sessions/destroy">로그아웃</a></li>
+                    <li class="log welcome">반갑습니다. <%=@user_myid%>님!</li>
+                </ul>
+            </nav>
+        </head><!--session의 create 액션이 작동해서 myid, password입력 받아서 저장이 되었다면 이 화면을 띄운다.-->
+    <% else %><!--else-->
+        <head>
+            <nav class="nav">
+                <ul>
+                    <li><a class="li" href="/">너나들이</a></li>
+                    <li><a class="li" href="/posts/write">글작성</a></li>
+                    <li class="log li"><a href="/users/member_registration">회원가입</a></li>
+                    <li class="log li"><a href="/sessions/login">로그인</a></li>
+                </ul>
+            </nav>
+        </head><!--myid, password를 입력받지 못해서 session[:user_id]==NULL인 상태에서는 이 화면을 띄운다-->
+    <% end %>
 
-<% @posts.each do |p| %><!--여기에는 %= 하는 거 아니다-->
-    <br>
-   
-    <a class="title" href="/posts/show/<%=p.id%>"><%=p.title%></a>
-    <!--p에는 각각의 행이 담겨있다-->
-   
-    <br>
-    <img src="<%=p.image.url%>"/>
-    
-    <form action="/posts/destroy/<%= p.id %>" method="POST">
-    <!--id는 기본적으로 레일즈가 갖고 있는, 배열방번호 같은-->
-    <button class="submit" type="submit" value="글 올리기" formaction="/posts/edit/<%=p.id%>" formmethod="POST">수정</button>
-    <button type="submit" class="submit" value="삭제">삭제</button>
+<br>
+
+<!--제목, 내용, 버튼, 이미지 업로드 기능 만들기-->
+    <h2>#새로운_글_작성</h2>
+    <form action="/posts/create" method="POST" enctype="multipart/form-data"><!--url에 숨겨서 보이도록/ enctype="multipart/form-data" 는 이미지 업로드를 위한 코드-->
+        <textarea class="title" type="text" name="post_title" placeholder="제목을 써주세요 :)"></textarea>
+        <br>
+        <textarea class="content" type="text" name="post_content" placeholder="내용도 입력해주세요 :)"></textarea>
+        <br>
+        <br>
+       <button type="submit" class="submit" value="확인">확인</button>
+       <input type="file" name="pic"></input><!--이미지 업로드 기능-->
     </form>
-    
-    <br>
-    
-    <hr>
-<% end %>
+
+<p class="margin"></p>
+
+<!--게시판 목록과 삭제 기능-->
+    <h2>#게시판_목록</h2>
+    <% @posts.each do |p| %><!--여기에는 %= 하는 거 아니다-->
+        <h3>#<%=p.id%>-<a href="/posts/show/<%=p.id%>"><%=p.title%></a></h3>
+        <!--p에는 각각의 행이 담겨있다-->
+        
+        <p>작성일 : <%=p.created_at%><!--new--></p>
+      
+        <form action="/posts/destroy/<%= p.id %>" method="POST">
+        <!--id는 기본적으로 레일즈가 갖고 있는, 배열방번호 같은-->
+            <button type="submit" class="submit" value="삭제">삭제</button>
+        </form>
+    <% end %>
+

@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'hirb'#NEW
-gem 'carrierwave'#NEW
+gem 'hirb'
+gem 'carrierwave'
+#이미지 업로드 기능을 위해 추가해야 할 것!
+#bundle install 꼭 bash창에! 수정될 때마다!
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

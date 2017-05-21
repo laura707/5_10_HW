@@ -14,3 +14,4 @@ new_post.save
 Post.create(title: "안녕", content: "내용")
 
 Comment.create(:content => '댓글', :post_id => 1)#"" 아니고 ''써야함
+#rake db:seed를 bash창에!

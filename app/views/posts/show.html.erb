@@ -1,30 +1,64 @@
+<!--게시판 수정, 댓글 목록 보여주기, 댓글 작성, 댓글 삭제-->
+
+<!--메뉴바-->
+    <% unless session[:user_id].nil? %><!--if(session[:user_id]!=NULL)-->
+        <head>
+            <nav class="nav">
+                <ul>
+                    <li><a class="li" href="/">너나들이</a></li>
+                    <li><a class="li" href="/posts/write">글작성</a></li>
+                    <li class="log li"><a href="/users/member_registration">회원가입</a></li>
+                    <li class="log li"><a href="/sessions/destroy">로그아웃</a></li>
+                    <li class="log welcome">반갑습니다. <%=@user_myid%>님!</li>
+                </ul>
+        </nav>
+        </head><!--session의 create 액션이 작동해서 myid, password입력 받아서 저장이 되었다면 이 화면을 띄운다.-->
+    <% else %><!--else-->
+        <head>
+            <nav class="nav">
+                <ul>
+                    <li><a class="li" href="/">너나들이</a></li>
+                    <li><a class="li" href="/posts/write">글작성</a></li>
+                    <li class="log li"><a href="/users/member_registration">회원가입</a></li>
+                    <li class="log li"><a href="/sessions/login">로그인</a></li>
+                </ul>
+        </nav>
+        </head><!--myid, password를 입력받지 못해서 session[:user_id]==NULL인 상태에서는 이 화면을 띄운다-->
+    <% end %>
+<!--session 컨트롤러에서 로그인, 로그아웃 시에는 write화면으로만 가도록 설정되어있음-->
+
 <h2>#게시글_상세보기</h2>
-<h3>이미지</h3>
-<image src="post.image" />
 
-<h3 class="tit">제목: <%= @post.title %></h3>
-<hr>
-<h3 class="con">내용: <%= @post.content %></h3>
+<!--이미지 보여주기-->
+    <h3>이미지</h3>
+    
+    <img src="<%=@post.image.url%>" alt="※ No Image ※ "/>
+    <h3 class="tit">제목: <%=@post.title %></h3>
+    <h3 class="con">내용: <%=@post.content %></h3>
+    
+    <p>최종 수정일 : <%=@post.updated_at%></p>
+      
+    <form action="/posts/destroy/<%=@post.id %>" method="POST">
+        <button class="submit" type="submit" formaction="/posts/edit/<%=@post.id%>" formmethod="POST">수정</button>
+    </form><!--게시판 수정-->
+    
+    <hr>
 
-
-<!--NEW-->
-<form action="/comments/create" method="POST"><!--url에 숨겨서 보이도록-->
-    <!--이 곳에서 입력한 내용을 posts-create파일로 넘어감-->
-    <!--제목, 내용, 버튼 만들기-->
-    <input type="hidden" name="post_id" value="<%=@post.id%>">
-    <!--몇 번째 게시글에 해당하는 댓글인지 알기 위한 코드-->
-    <input class="comment" type="text" name="comment_content" placeholder="댓글을 달아주세요!">
-    <br>
-    <button class="submit" type="submit" value="작성하기">작성하기</button>
-</form>
-
-
-<h4>댓글목록</h4>
-<% @comments.each do |c| %>
-  <p class="list"><%=c.content%>
-  <!--NEW-->
-   <form action="/comments/destroy/<%= c.id %>" method="POST">
-    <button type="submit" value="삭제">삭제</button>
-   </form>
-  </p>
-<%end%>
+<!--댓글 목록, 작성, 삭제-->
+    <h2>#댓글목록</h2>
+    
+    <form action="/comments/create" method="POST">
+        <input type="hidden" name="post_id" value="<%=@post.id%>"><!--몇 번째 게시글에 해당하는 댓글인지 알기 위한 코드-->
+        <!--몇 번째 게시글에 해당하는 지는 안 보여줄 것임(hidden)-->
+        <textarea class="comment" type="text" name="comment_content" placeholder="댓글을 달아주세요!"></textarea>
+        <br>
+        <button class="submit" type="submit">작성하기</button>
+    </form>
+    
+    <% @comments.each do |c| %>
+        <p><%=c.content%>
+          <form action="/comments/destroy/<%= c.id %>" method="POST">
+              <button type="submit">삭제</button>
+          </form>
+        </p>
+    <%end%>

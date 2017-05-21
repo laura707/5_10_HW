@@ -1,11 +1,11 @@
+<!--게시판 수정하기-->
+
+<h2>#수정하기</h2>
+
 <form action="/posts/update/<%= @post.id%>" method="POST">
-    <!--@post.id로! -->
-    <!--url에 숨겨서 보이도록-->
-    <!--이 곳에서 입력한 내용을 posts-create파일로 넘어감-->
-    <!--제목, 내용, 버튼 만들기-->
-    <input type="text" name="post_title" value="<%=@post.title%>">
+    <textarea type="text" name="post_title" value="<%=@post.title%>" placeholder="수정할 제목을 입력해주세요 :)"></textarea>
     <br>
-    <input type="text" name="post_content" placeholder="내용도 입력해주세요 :)" value=<%=@post.content%>>
+    <textarea type="text" name="post_content" placeholder="수정할 내용도 입력해주세요 :)" value="<%=@post.content%>"></textarea>
     <br>
-    <button type="submit" value="수정완료">수정완료</button>
+    <button type="submit" class="submit">수정완료</button>
 </form>

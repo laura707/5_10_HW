@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
     has_many :comments
     mount_uploader :image, ImageUploader
 end
+#rails g model post 하면 232325252...라는 db migrate파일도 자동 생성
 #Post는 아주 많은 comments를 가지고 있다

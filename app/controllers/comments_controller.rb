@@ -9,10 +9,9 @@ class CommentsController < ApplicationController
         #다시 돌아가라!
     end
     
-    #NEW
     def destroy
         comment=Comment.find(params[:id])
-        comment.destroy!
+        comment.destroy
         
         redirect_to :back#이 문법 기억할 것
     end
